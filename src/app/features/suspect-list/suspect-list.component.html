@@ -1,0 +1,18 @@
+<div class="suspect-list">
+
+  <input
+    type="text"
+    placeholder="Search suspect..."
+    (input)="onSearch($event)"
+  />
+
+  <div
+    class="suspect-card"
+    *ngFor="let suspect of suspects$ | async"
+    (click)="select(suspect)"
+  >
+    <div class="name">{{ suspect.name }}</div>
+    <div class="risk">{{ suspect.riskLevel }}</div>
+  </div>
+
+</div>

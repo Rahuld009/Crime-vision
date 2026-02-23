@@ -1,0 +1,40 @@
+<div class="timeline-wrapper" *ngIf="suspect; else noSelection">
+
+  <div class="timeline-header">
+    <h3>Travel Timeline</h3>
+    <span class="total-time">
+      Total Hours:
+      {{ service.getTotalTimeSpent(suspect) }}
+    </span>
+  </div>
+
+  <div class="timeline-list">
+    <div
+      class="timeline-item"
+      *ngFor="let loc of suspect.history; let i = index"
+    >
+      <div class="timeline-marker"></div>
+
+      <div class="timeline-content">
+        <div class="timeline-city">
+          {{ loc.city }}
+        </div>
+
+        <div class="timeline-time">
+          {{ loc.arrivalTime }} → {{ loc.departureTime }}
+        </div>
+
+        <div class="timeline-duration">
+          Duration: {{ getDuration(loc) }} hrs
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #noSelection>
+  <div class="empty-state">
+    Select a suspect to view travel timeline.
+  </div>
+</ng-template>

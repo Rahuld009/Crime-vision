@@ -1,0 +1,22 @@
+.dashboard {
+  display: flex;
+  height: 80vh;
+  background: #111;
+  color: white;
+}
+
+.sidebar {
+  width: 30%;
+  background: #1c1c1c;
+  padding: 1rem;
+}
+
+.map-area {
+  width: 70%;
+}
+
+.timeline-section {
+  height: 20vh;
+  background: #151515;
+  padding: 1rem;
+}
