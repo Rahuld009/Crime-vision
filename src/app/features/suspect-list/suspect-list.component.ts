@@ -1,31 +1,53 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { SuspectService } from '../../core/services/suspect.service';
 import { Suspect } from '../../core/models/suspect.model';
+import { CommonModule } from '@angular/common';
+import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   standalone: true,
   selector: 'app-suspect-list',
-  imports: [CommonModule],
   templateUrl: './suspect-list.component.html',
-  styleUrls: ['./suspect-list.component.scss']
+  styleUrls: ['./suspect-list.component.scss'],
+  imports: [
+    CommonModule,
+    TableModule,
+    TagModule,
+    FormsModule,
+    InputTextModule
+  ]
 })
-export class SuspectListComponent {
+export class SuspectListComponent implements OnInit {
 
-  suspects$: Observable<Suspect[]>;
+  suspects: Suspect[] = [];
+  searchText = '';
 
-  constructor(private service: SuspectService) {
-    this.suspects$ = this.service.suspects$;
+  constructor(private suspectService: SuspectService) {}
+
+  ngOnInit(): void {
+
+    this.suspectService.suspects$.subscribe(data => {
+      this.suspects = data;
+    });
+
   }
 
-  select(suspect: Suspect): void {
-    this.service.selectSuspect(suspect);
+  getSeverity(risk: string) {
+    switch (risk) {
+      case 'HIGH': return 'danger';
+      case 'MEDIUM': return 'warning';
+      default: return 'success';
+    }
   }
 
-  onSearch(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const value = input?.value ?? '';
-    this.service.filterSuspects(value);
+  onSearch() {
+    this.suspectService.filterSuspects(this.searchText);
   }
+
+  onRowSelect(event: any) {
+  this.suspectService.selectSuspect(event.data);
+}
 }
