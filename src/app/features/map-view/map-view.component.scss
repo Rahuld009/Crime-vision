@@ -1,35 +1,70 @@
+// .map-wrapper {
+//   display: flex;
+//   flex-direction: column;
+//   height: 500px;
+//   border-radius: 14px;
+//   overflow: hidden;
+// }
+
+// .map-header {
+//   padding: 18px 24px;
+//   background: #FFFFFF;
+//   border-bottom: 1px solid #E5E7EB;
+// }
+
+// .map-header h2 {
+//   font-size: 18px;
+//   font-weight: 600;
+//   color: #111827;
+//   margin-bottom: 4px;
+// }
+
+// .map-subtitle {
+//   font-size: 13px;
+//   color: #6B7280;
+// }
+
+// .map-container {
+//   flex: 1;
+// }
+
+// #crime-map {
+//   height: 100%;
+//   width: 100%;
+// }
+
+
 .map-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background: #0f172a; // deep intelligence blue
+  border-radius: 12px;
+  border: 1px solid #2A3247;
+  background: #1F2636;
+  height: 500px;
 }
 
 .map-header {
-  padding: 12px 16px;
-  background: #111827;
-  border-bottom: 1px solid #1f2937;
+  padding: 16px 20px;
+  background: #242D41;
+  border-bottom: 1px solid #2A3247;
+}
 
-  h2 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff;
-  }
+.map-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #E4E7EB;
+}
 
-  .map-subtitle {
-    font-size: 12px;
-    color: #9ca3af;
-  }
+.map-subtitle {
+  font-size: 13px;
+  color: #A0A9B8;
 }
 
 .map-container {
   flex: 1;
-  position: relative;
 }
 
 #crime-map {
   height: 100%;
   width: 100%;
-  border-left: 1px solid #1f2937;
 }

@@ -1,0 +1,54 @@
+<div class="crime-filter-container">
+
+  <div class="grid">
+
+    <!-- Row 1 -->
+    <div class="field col-4">
+      <label>Crime Location</label>
+      <input
+        pInputText
+        [(ngModel)]="crimeLocation"
+        placeholder="Enter location" />
+    </div>
+
+    <div class="field col-4">
+      <label>Start Date</label>
+      <p-calendar
+        [(ngModel)]="startDate"
+        [showIcon]="true"
+        dateFormat="dd/mm/yy"
+        (onSelect)="onStartDateChange()">
+      </p-calendar>
+    </div>
+
+    <div class="field col-4">
+      <label>End Date</label>
+      <p-calendar
+        [(ngModel)]="endDate"
+        [showIcon]="true"
+        [minDate]="startDate"
+        dateFormat="dd/mm/yy">
+      </p-calendar>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="col-12 actions">
+      <button
+        pButton
+        label="Reset"
+        class="reset-btn"
+        (click)="reset()">
+      </button>
+
+      <button
+        pButton
+        label="Analyze"
+        class="analyze-btn"
+        (click)="run()"
+        [disabled]="!isValidRange()">
+      </button>
+    </div>
+
+  </div>
+
+</div>

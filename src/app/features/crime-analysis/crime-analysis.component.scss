@@ -1,0 +1,92 @@
+.crime-filter-container {
+  background: #242D41;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #2A3247;
+}
+
+/* 12 column system */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 24px;
+  row-gap: 16px;
+  align-items: end;
+}
+
+/* Column spans */
+.col-4 {
+  grid-column: span 4;
+}
+
+.col-12 {
+  grid-column: span 12;
+}
+
+/* Fields */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #A0A9B8;
+}
+
+/* Buttons row */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+/* Inputs */
+:host ::ng-deep .p-inputtext {
+  width: 100%;
+  background: #1F2937;
+  border: 1px solid #2A3247;
+  border-radius: 8px;
+  color: #E4E7EB;
+  padding: 8px 12px;
+  transition: 0.2s ease;
+}
+
+:host ::ng-deep .p-inputtext:focus {
+  border-color: #5C7AEA;
+  box-shadow: 0 0 0 2px rgba(92,122,234,0.25);
+}
+
+/* Calendar */
+:host ::ng-deep .p-calendar {
+  width: 100%;
+}
+
+:host ::ng-deep .p-calendar .p-inputtext {
+  width: 100%;
+}
+
+/* Buttons */
+:host ::ng-deep .analyze-btn {
+  background: #5C7AEA;
+  border: none;
+  border-radius: 8px;
+}
+
+:host ::ng-deep .analyze-btn:hover {
+  background: #4A60D2;
+}
+
+:host ::ng-deep .reset-btn {
+  background: transparent;
+  border: 1px solid #2A3247;
+  color: #E4E7EB;
+  border-radius: 8px;
+}
+
+:host ::ng-deep .reset-btn:hover {
+  background: #2A3247;
+}

@@ -20,6 +20,8 @@ export class MapViewComponent implements AfterViewInit, OnDestroy {
     private suspectService: SuspectService
   ) {}
 
+  
+
   ngAfterViewInit(): void {
     this.mapService.initMap('crime-map');
 
