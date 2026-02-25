@@ -96,10 +96,10 @@ export class CrimeAnalysisComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // Default last 7 days
+    // Default last 30 days
     this.endDate = new Date();
     this.startDate = new Date();
-    this.startDate.setDate(this.endDate.getDate() - 7);
+    this.startDate.setDate(this.endDate.getDate() - 30);
 
     // Derive cities from master data
     this.suspectService.suspects$.subscribe(() => {
@@ -114,18 +114,18 @@ export class CrimeAnalysisComponent implements OnInit {
     );
   }
 
-  run(): void {
+run(): void {
 
-    if (this.startDate > this.endDate) {
-      this.endDate = new Date(this.startDate);
-    }
-
-    this.analysisService.analyze(
-      this.crimeLocation,
-      this.startDate,
-      this.endDate
-    );
+  if (this.startDate > this.endDate) {
+    this.endDate = new Date(this.startDate);
   }
+
+  this.analysisService.analyze(
+    this.crimeLocation,
+    this.startDate,
+    this.endDate
+  );
+}
 
   onStartDateChange(): void {
     if (this.startDate > this.endDate) {
@@ -133,14 +133,17 @@ export class CrimeAnalysisComponent implements OnInit {
     }
   }
 
-  reset(): void {
+reset(): void {
 
-    this.crimeLocation = null;
+  this.crimeLocation = null;
 
-    this.endDate = new Date();
-    this.startDate = new Date();
-    this.startDate.setDate(this.endDate.getDate() - 7);
+  this.endDate = new Date();
+  this.startDate = new Date();
+  this.startDate.setDate(this.endDate.getDate() - 30);
 
-    this.analysisService.reset();
-  }
+  //  CLEAR MAP
+  this.suspectService.clearSelection();
+
+  this.analysisService.reset();
+}
 }

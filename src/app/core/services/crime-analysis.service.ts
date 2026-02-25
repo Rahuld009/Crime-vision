@@ -30,41 +30,6 @@ export class CrimeAnalysisService {
    * - Only date
    * - Both
    */
-  // analyze(
-  //   crimeCity: string | null,
-  //   startDate: Date | null,
-  //   endDate: Date | null
-  // ): void {
-
-  //   const suspects = this.suspectService.getAll();
-
-  //   const filtered = suspects.filter(suspect =>
-  //     suspect.history.some(entry => {
-
-  //       const arrival = new Date(entry.arrivalTime);
-  //       const departure = new Date(entry.departureTime);
-
-  //       const cityMatch = crimeCity
-  //         ? entry.city.toLowerCase() === crimeCity.toLowerCase()
-  //         : true;
-
-  //       const dateMatch =
-  //         startDate && endDate
-  //           ? arrival <= endDate && departure >= startDate
-  //           : true;
-
-  //       return cityMatch && dateMatch;
-  //     })
-  //   );
-
-  //   this.suspectService.updateSuspects(filtered);
-  // }
-
-  // reset(): void {
-  //   this.suspectService.updateSuspects(
-  //     this.suspectService.getAll()
-  //   );
-  // }
 
 analyze(
   crimeCity: string | null,
@@ -72,7 +37,7 @@ analyze(
   endDate: Date | null
 ): void {
 
-  const suspects = this.suspectService.getAll();
+   const suspects = this.suspectService.getAll();
 
   const filtered = suspects.filter(suspect =>
     suspect.history.some(entry => {

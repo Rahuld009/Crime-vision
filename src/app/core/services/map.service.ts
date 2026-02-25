@@ -70,19 +70,25 @@ export class MapService {
      STOP CURRENT ANIMATION (CRITICAL FIX)
   ========================================== */
 
-  private stopCurrentAnimation(): void {
+private stopCurrentAnimation(): void {
 
-    this.isAnimating = false;
+  this.isAnimating = false;
 
-    if (this.animationFrameId !== null) {
-      cancelAnimationFrame(this.animationFrameId);
-      this.animationFrameId = null;
-    }
-
-    if (this.routeLine) {
-      this.map.removeLayer(this.routeLine);
-    }
+  if (this.animationFrameId !== null) {
+    cancelAnimationFrame(this.animationFrameId);
+    this.animationFrameId = null;
   }
+
+  if (this.routeLine) {
+    this.map.removeLayer(this.routeLine);
+    this.routeLine = undefined as any;
+  }
+
+  if (this.marker) {
+    this.map.removeLayer(this.marker);
+    this.marker = undefined as any;
+  }
+}
 
   /* =========================================
      ROUTE ANIMATION CONTROLLER
@@ -170,17 +176,17 @@ export class MapService {
   }
 
 
-  resetMap(): void {
+resetMap(): void {
 
   this.stopCurrentAnimation();
 
-  if (this.marker) {
-    this.map.removeLayer(this.marker);
-  }
+  // if (this.marker) {
+  //   this.map.removeLayer(this.marker);
+  // }
 
-  if (this.routeLine) {
-    this.map.removeLayer(this.routeLine);
-  }
+  // if (this.routeLine) {
+  //   this.map.removeLayer(this.routeLine);
+  // }
 
   this.map.setView([20.5937, 78.9629], 5);
 }

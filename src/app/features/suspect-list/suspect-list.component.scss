@@ -144,21 +144,43 @@
 
 /* ================= RISK TAGS ================= */
 
+/* =====  Width Risk Badge ===== */
+
+:host ::ng-deep .p-tag {
+  width: 90px;                 /* 🔥 fixed width */
+  text-align: center;
+  justify-content: center;
+  border-radius: 20px;         /* pill style */
+  padding: 4px 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+}
+
+/* LOW */
 :host ::ng-deep .p-tag-success {
-  background: #4CAF50 !important;
-  color: #FFFFFF !important;
+  // background: #1E3A34 !important;
+  background: #2a9b82 !important;
+  color: #34D399 !important;
+  border-color: #065F46 !important;
 }
 
+/* MEDIUM */
 :host ::ng-deep .p-tag-warning {
-  background: #FBBF24 !important;
-  color: #FFFFFF !important;
+  // background: #3A2E1E !important;
+  background: #e989088c !important;
+  color: #FBBF24 !important;
+  border-color: #92400E !important;
 }
 
+/* HIGH */
 :host ::ng-deep .p-tag-danger {
-  background: #EF5350 !important;
-  color: #FFFFFF !important;
+  // background: #3A1F22 !important;
+  background:#9f2323c9 !important;
+  color: #F87171 !important;
+  border-color: #7F1D1D !important;
 }
-
 /* ================= EMPTY STATE ================= */
 
 .empty-message {
