@@ -180,8 +180,8 @@ updateSuspects(data: Suspect[]): void {
   this.suspectsSubject.next(data);
 }
 
-getSnapshot(): Suspect[] {
-  return this.suspectsSubject.getValue();
+getAll(): Suspect[] {
+  return this.allSuspects;
 }
 
 }

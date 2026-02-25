@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { SuspectService } from './suspect.service';
-import { ScoringEngineService, RiskLevel } from './scoring-engine.service';
 import { Suspect } from '../models/suspect.model';
 
 @Injectable({
@@ -8,70 +7,105 @@ import { Suspect } from '../models/suspect.model';
 })
 export class CrimeAnalysisService {
 
-  constructor(
-    private suspectService: SuspectService,
-    private scoringEngine: ScoringEngineService
-  ) {}
+  constructor(private suspectService: SuspectService) {}
 
-  analyze(
-    crimeLocation: string,
-    startDate: Date,
-    endDate: Date
-  ): Suspect[] {
+  /**
+   * Extract unique cities from master data
+   */
+  getAvailableCities(): string[] {
 
-    const suspects = this.suspectService.getSnapshot();
+    const suspects = this.suspectService.getAll();
 
-    if (!crimeLocation || !startDate || !endDate) {
-      return suspects;
-    }
-
-    const locationMatch = suspects
-      .flatMap(s => s.history)
-      .find(h =>
-        h.city.toLowerCase() === crimeLocation.toLowerCase()
-      );
-
-    if (!locationMatch) {
-      console.warn('Crime location not found.');
-      return suspects;
-    }
-
-    const crimeLat = locationMatch.latitude;
-    const crimeLng = locationMatch.longitude;
-
-    const analyzedSuspects: Suspect[] = suspects.map(suspect => {
-
-      const score = this.scoringEngine.calculateScore(
-        suspect,
-        crimeLat,
-        crimeLng,
-        startDate,
-        endDate
-      );
-
-      const updatedRisk: RiskLevel =
-        this.scoringEngine.getRisk(score);
-
-      return {
-        ...suspect,
-        riskLevel: updatedRisk
-      };
-    });
-
-    // Sort by risk priority
-    const riskWeight: Record<RiskLevel, number> = {
-      HIGH: 3,
-      MEDIUM: 2,
-      LOW: 1
-    };
-
-    analyzedSuspects.sort((a, b) =>
-      riskWeight[b.riskLevel] - riskWeight[a.riskLevel]
+    const cities = suspects.flatMap(s =>
+      s.history.map(h => h.city)
     );
 
-    // Update reactive stream safely
-    this.suspectService.updateSuspects(analyzedSuspects);
-
-    return analyzedSuspects;
+    return [...new Set(cities)].sort();
   }
+
+  /**
+   * Production filtering
+   * Supports:
+   * - Only city
+   * - Only date
+   * - Both
+   */
+  // analyze(
+  //   crimeCity: string | null,
+  //   startDate: Date | null,
+  //   endDate: Date | null
+  // ): void {
+
+  //   const suspects = this.suspectService.getAll();
+
+  //   const filtered = suspects.filter(suspect =>
+  //     suspect.history.some(entry => {
+
+  //       const arrival = new Date(entry.arrivalTime);
+  //       const departure = new Date(entry.departureTime);
+
+  //       const cityMatch = crimeCity
+  //         ? entry.city.toLowerCase() === crimeCity.toLowerCase()
+  //         : true;
+
+  //       const dateMatch =
+  //         startDate && endDate
+  //           ? arrival <= endDate && departure >= startDate
+  //           : true;
+
+  //       return cityMatch && dateMatch;
+  //     })
+  //   );
+
+  //   this.suspectService.updateSuspects(filtered);
+  // }
+
+  // reset(): void {
+  //   this.suspectService.updateSuspects(
+  //     this.suspectService.getAll()
+  //   );
+  // }
+
+analyze(
+  crimeCity: string | null,
+  startDate: Date | null,
+  endDate: Date | null
+): void {
+
+  const suspects = this.suspectService.getAll();
+
+  const filtered = suspects.filter(suspect =>
+    suspect.history.some(entry => {
+
+      const arrival = new Date(entry.arrivalTime);
+      const departure = new Date(entry.departureTime);
+
+      const cityMatch = crimeCity
+        ? entry.city.toLowerCase() === crimeCity.toLowerCase()
+        : true;
+
+      const dateMatch =
+        startDate && endDate
+          ? arrival <= endDate && departure >= startDate
+          : true;
+
+      return cityMatch && dateMatch;
+    })
+  );
+
+  // 🔥 CLEAR selection BEFORE updating list
+  this.suspectService.clearSelection();
+
+  this.suspectService.updateSuspects(filtered);
+}
+
+reset(): void {
+
+  this.suspectService.clearSelection();
+
+  this.suspectService.updateSuspects(
+    this.suspectService.getAll()
+  );
+}
+
 }
