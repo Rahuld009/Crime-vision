@@ -6,10 +6,13 @@ export interface LocationEntry {
   departureTime: string;
 }
 
+
+export type RiskLevel = 'LOW' | 'MEDIUM' | 'HIGH';
+
 export interface Suspect {
   id: number;
   name: string;
   age: number;
-  riskLevel: 'LOW' | 'MEDIUM' | 'HIGH';
+  riskLevel: RiskLevel;
   history: LocationEntry[];
 }

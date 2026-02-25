@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+/* ===== PRIME NG DROPDOWN DARK OVERRIDE ===== */
+
+.p-dropdown-panel {
+  background: #1F2937 !important;
+  border: 1px solid #2A3247 !important;
+}
+
+.p-dropdown-item {
+  background: #1F2937 !important;
+  color: #E4E7EB !important;
+}
+
+.p-dropdown-item:hover {
+  background: #2A3247 !important;
+}
+
+/* 🔥 THIS FIXES THE WHITE FIRST ROW */
+.p-dropdown-item.p-highlight {
+  background: #2A3247 !important;
+  color: #E4E7EB !important;
+}
+
+/* Remove default theme highlight */
+.p-highlight {
+  background: #2A3247 !important;
+  color: #E4E7EB !important;
+}
+
+/* Dropdown input styling */
+.p-dropdown {
+  background: #1F2937 !important;
+  border: 1px solid #2A3247 !important;
+  border-radius: 8px !important;
+}
+
+.p-dropdown:not(.p-disabled).p-focus {
+  border-color: #5C7AEA !important;
+  box-shadow: 0 0 0 2px rgba(92,122,234,0.25) !important;
+}

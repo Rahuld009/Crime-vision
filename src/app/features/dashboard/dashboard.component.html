@@ -1,13 +1,52 @@
-<div class="dashboard">
-  <div class="sidebar">
-    <app-suspect-list></app-suspect-list>
+<div class="dashboard-container">
+
+  <!-- ================= HEADER ================= -->
+  <header class="dashboard-header">
+
+    <div class="brand-section">
+
+      <!-- Logo Image -->
+      <div class="logo-wrapper">
+        <img
+          src="assets/images/crimevision-logo-animated.svg"
+          alt="CrimeVision Logo"
+          class="logo-image" />
+      </div>
+
+      <!-- Brand Typography -->
+      <div class="brand-text">
+        <div class="brand-title">
+          <span class="brand-name">CrimeVision</span>
+          <span class="brand-registered">®</span>
+        </div>
+
+        <div class="brand-subtitle">
+          Sentinel Intelligence Platform
+        </div>
+
+       
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- ================= CONTENT ================= -->
+    <div class="top-panel">
+    <app-crime-analysis></app-crime-analysis>
   </div>
 
-  <div class="map-area">
-    <app-map-view></app-map-view>
-  </div>
-</div>
+  <div class="content-grid">
 
-<div class="timeline-section">
-  <app-timeline></app-timeline>
+    <div class="left-panel">
+      <app-suspect-list></app-suspect-list>
+    </div>
+
+    <div class="right-panel">
+      <app-map-view></app-map-view>
+      <app-timeline></app-timeline>
+    </div>
+
+  </div>
+
 </div>
