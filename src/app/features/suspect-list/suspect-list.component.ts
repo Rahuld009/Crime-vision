@@ -1,31 +1,55 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { SuspectService } from '../../core/services/suspect.service';
 import { Suspect } from '../../core/models/suspect.model';
+import { CommonModule } from '@angular/common';
+import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   standalone: true,
   selector: 'app-suspect-list',
-  imports: [CommonModule],
   templateUrl: './suspect-list.component.html',
-  styleUrls: ['./suspect-list.component.scss']
+  styleUrls: ['./suspect-list.component.scss'],
+  imports: [
+    CommonModule,
+    TableModule,
+    TagModule,
+    FormsModule,
+    InputTextModule
+  ]
 })
-export class SuspectListComponent {
+export class SuspectListComponent implements OnInit {
 
-  suspects$: Observable<Suspect[]>;
+  suspects: Suspect[] = [];
+  searchText = '';
+  selectedSuspect: Suspect | null = null;
 
-  constructor(private service: SuspectService) {
-    this.suspects$ = this.service.suspects$;
+  constructor(private suspectService: SuspectService) {}
+
+  ngOnInit(): void {
+
+  this.suspectService.suspects$.subscribe(data => {
+    this.suspects = data;
+    this.selectedSuspect = null; // 🔥 Clear table selection
+  });
+
+}
+
+  getSeverity(risk: string) {
+    switch (risk) {
+      case 'HIGH': return 'danger';
+      case 'MEDIUM': return 'warning';
+      default: return 'success';
+    }
   }
 
-  select(suspect: Suspect): void {
-    this.service.selectSuspect(suspect);
+  onSearch() {
+    this.suspectService.filterSuspects(this.searchText);
   }
 
-  onSearch(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const value = input?.value ?? '';
-    this.service.filterSuspects(value);
-  }
+  onRowSelect(event: any) {
+  this.suspectService.selectSuspect(event.data);
+}
 }
