@@ -21,7 +21,8 @@
         </div>
 
         <div class="timeline-time">
-          {{ loc.arrivalTime }} → {{ loc.departureTime }}
+          <!-- {{ loc.arrivalTime }} → {{ loc.departureTime }} -->
+          {{ loc.arrivalTime | date:'dd-MM-yyyy HH:mm a' }} → {{ loc.departureTime | date:'dd-MM-yyyy HH:mm a' }}
         </div>
 
         <div class="timeline-duration">

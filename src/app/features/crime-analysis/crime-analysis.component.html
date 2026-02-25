@@ -1,0 +1,68 @@
+<div class="crime-filter-container">
+  <div class="grid">
+
+    <div class="col-4 field">
+      <label>Crime Location</label>
+      <!-- <p-dropdown
+        [options]="cities"
+        [(ngModel)]="crimeLocation"
+        placeholder="Select City"
+        [showClear]="true">
+      </p-dropdown> -->
+
+      <p-dropdown
+  [options]="cities"
+  [(ngModel)]="crimeLocation"
+  placeholder="Select City"
+  styleClass="custom-dropdown">
+</p-dropdown>
+
+      <!-- <p-dropdown
+  [options]="cities"
+  [(ngModel)]="crimeLocation"
+  placeholder="Select City"
+  [showClear]="true"
+  appendTo="body"
+  styleClass="dark-dropdown">
+</p-dropdown> -->
+    </div>
+
+    <div class="col-4 field">
+      <label>Start Date</label>
+      <p-calendar
+        [(ngModel)]="startDate"
+        (onSelect)="onStartDateChange()"
+        dateFormat="yy-mm-dd"
+          styleClass="custom-calendar"
+        [showIcon]="true">
+      </p-calendar>
+    </div>
+
+    <div class="col-4 field">
+      <label>End Date</label>
+      <p-calendar
+        [(ngModel)]="endDate"
+        dateFormat="yy-mm-dd"
+          styleClass="custom-calendar"
+        [showIcon]="true">
+      </p-calendar>
+    </div>
+
+    <div class="col-12 actions">
+      <button
+        pButton
+        label="Run Analysis"
+        class="analyze-btn"
+        (click)="run()">
+      </button>
+
+      <button
+        pButton
+        label="Reset"
+        class="reset-btn"
+        (click)="reset()">
+      </button>
+    </div>
+
+  </div>
+</div>

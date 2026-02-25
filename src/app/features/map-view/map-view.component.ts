@@ -20,16 +20,35 @@ export class MapViewComponent implements AfterViewInit, OnDestroy {
     private suspectService: SuspectService
   ) {}
 
-  ngAfterViewInit(): void {
-    this.mapService.initMap('crime-map');
+  
 
-    this.subscription = this.suspectService.selectedSuspect$
-      .subscribe(suspect => {
-        if (suspect) {
-          this.mapService.plotSuspect(suspect);
-        }
-      });
-  }
+  // ngAfterViewInit(): void {
+  //   this.mapService.initMap('crime-map');
+
+  //   this.subscription = this.suspectService.selectedSuspect$
+  //     .subscribe(suspect => {
+  //       if (suspect) {
+  //         this.mapService.plotSuspect(suspect);
+  //       }
+  //     });
+  // }
+
+  ngAfterViewInit(): void {
+
+  this.mapService.initMap('crime-map');
+
+  this.subscription = this.suspectService.selectedSuspect$
+    .subscribe(suspect => {
+
+      if (suspect) {
+        this.mapService.plotSuspect(suspect);
+      } else {
+        // 🔥 Clear map when selection removed
+        this.mapService.resetMap();
+      }
+
+    });
+}
 
   ngOnDestroy(): void {
     if (this.subscription) {

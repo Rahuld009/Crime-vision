@@ -176,4 +176,12 @@ export class SuspectService {
   return `${hours} hours`;
 }
 
+updateSuspects(data: Suspect[]): void {
+  this.suspectsSubject.next(data);
+}
+
+getAll(): Suspect[] {
+  return this.allSuspects;
+}
+
 }
