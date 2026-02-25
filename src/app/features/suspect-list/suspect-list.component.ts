@@ -24,16 +24,18 @@ export class SuspectListComponent implements OnInit {
 
   suspects: Suspect[] = [];
   searchText = '';
+  selectedSuspect: Suspect | null = null;
 
   constructor(private suspectService: SuspectService) {}
 
   ngOnInit(): void {
 
-    this.suspectService.suspects$.subscribe(data => {
-      this.suspects = data;
-    });
+  this.suspectService.suspects$.subscribe(data => {
+    this.suspects = data;
+    this.selectedSuspect = null; // 🔥 Clear table selection
+  });
 
-  }
+}
 
   getSeverity(risk: string) {
     switch (risk) {

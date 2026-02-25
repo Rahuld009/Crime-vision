@@ -55,9 +55,15 @@
   transition: 0.2s ease;
 }
 
-:host ::ng-deep .p-inputtext:focus {
-  border-color: #5C7AEA;
-  box-shadow: 0 0 0 2px rgba(92,122,234,0.25);
+// :host ::ng-deep .p-inputtext:focus {
+//   border-color: #5C7AEA;
+//   box-shadow: 0 0 0 2px rgba(92,122,234,0.25);
+// }
+
+/* Only calendar input focus */
+:host ::ng-deep .custom-calendar .p-inputtext:focus {
+  border-color: #5C7AEA !important;
+  box-shadow: 0 0 0 2px rgba(92,122,234,0.25) !important;
 }
 
 /* Calendar */
@@ -81,7 +87,7 @@
 }
 
 :host ::ng-deep .reset-btn {
-  background: transparent;
+  background: #766b6b5c;
   border: 1px solid #2A3247;
   color: #E4E7EB;
   border-radius: 8px;
@@ -89,4 +95,71 @@
 
 :host ::ng-deep .reset-btn:hover {
   background: #2A3247;
+}
+
+/* Dropdown full width */
+:host ::ng-deep .p-dropdown {
+  width: 100%;
+  background: #1F2937;
+  border: 1px solid #2A3247;
+  border-radius: 8px;
+}
+
+:host ::ng-deep .p-dropdown-label {
+  color: #E4E7EB;
+}
+
+:host ::ng-deep .p-dropdown-panel {
+  background: #1F2937;
+  border: 1px solid #2A3247;
+}
+
+:host ::ng-deep .p-dropdown-item {
+  color: #E4E7EB;
+}
+
+:host ::ng-deep .p-dropdown-item:hover {
+  background: #2A3247;
+}
+
+/* Blue focus border */
+:host ::ng-deep .p-dropdown:not(.p-disabled).p-focus {
+  border-color: #5C7AEA;
+  box-shadow: 0 0 0 2px rgba(92,122,234,0.25);
+}
+
+
+/* Remove white highlight on first item */
+:host ::ng-deep .p-dropdown-item.p-highlight {
+  background: #2A3247 !important;
+  color: #E4E7EB !important;
+}
+
+/* Dropdown panel background */
+:host ::ng-deep .p-dropdown-panel {
+  background: #1F2937 !important;
+  border: 1px solid #2A3247 !important;
+}
+
+/* Dropdown items */
+:host ::ng-deep .p-dropdown-item {
+  color: #E4E7EB !important;
+}
+
+:host ::ng-deep .p-dropdown-item:hover {
+  background: #2A3247 !important;
+}
+
+/* Input styling */
+:host ::ng-deep .custom-dropdown {
+  width: 100% !important;
+  background: #1F2937 !important;
+  border: 1px solid #2A3247 !important;
+  border-radius: 8px !important;
+}
+
+/* Blue focus border */
+:host ::ng-deep .custom-dropdown.p-focus {
+  border-color: #5C7AEA !important;
+  box-shadow: 0 0 0 2px rgba(92,122,234,0.25) !important;
 }

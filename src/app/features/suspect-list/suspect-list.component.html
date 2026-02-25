@@ -53,6 +53,7 @@
     #dt
     [value]="suspects"
     selectionMode="single"
+     [(selection)]="selectedSuspect"
     dataKey="id"
     (onRowSelect)="onRowSelect($event)"
     [globalFilterFields]="['name','riskLevel']"
@@ -64,7 +65,7 @@
       <tr>
         <th style="width: 80px;">Sr No</th>
         <th>Suspect Name</th>
-        <th style="width: 130px;">Risk Level</th>
+        <th style="width: 130px;">ThreatLevel</th>
       </tr>
     </ng-template>
 
