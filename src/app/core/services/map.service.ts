@@ -179,15 +179,6 @@ private stopCurrentAnimation(): void {
 resetMap(): void {
 
   this.stopCurrentAnimation();
-
-  // if (this.marker) {
-  //   this.map.removeLayer(this.marker);
-  // }
-
-  // if (this.routeLine) {
-  //   this.map.removeLayer(this.routeLine);
-  // }
-
   this.map.setView([20.5937, 78.9629], 5);
 }
 }
