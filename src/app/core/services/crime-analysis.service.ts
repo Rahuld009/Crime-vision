@@ -58,7 +58,6 @@ analyze(
     })
   );
 
-  // 🔥 CLEAR selection BEFORE updating list
   this.suspectService.clearSelection();
 
   this.suspectService.updateSuspects(filtered);

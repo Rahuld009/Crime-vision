@@ -34,7 +34,7 @@ export class MapService {
 
   plotSuspect(suspect: Suspect): void {
 
-    // 🔥 STOP previous tracking completely
+    //  STOP previous tracking completely
     this.stopCurrentAnimation();
 
     const history = suspect.history;

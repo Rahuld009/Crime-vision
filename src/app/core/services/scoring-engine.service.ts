@@ -36,7 +36,7 @@ export class ScoringEngineService {
         entry.longitude
       );
 
-      // Geographic scoring
+      // Geographic scoring **distanceis in KM
       if (distance <= 1) score += 40;         // Same city approx
       else if (distance <= 10) score += 30;   // Nearby
 

@@ -15,9 +15,6 @@ export class SuspectService {
    */
   private allSuspects: Suspect[] = [];
 
-  /**
-   * Public observable streams
-   */
   private suspectsSubject = new BehaviorSubject<Suspect[]>([]);
   suspects$: Observable<Suspect[]> = this.suspectsSubject.asObservable();
 

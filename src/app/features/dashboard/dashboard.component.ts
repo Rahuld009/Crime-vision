@@ -20,8 +20,7 @@ export class DashboardComponent {
    constructor(private suspectService: SuspectService) {}
 
   ngOnInit(): void {
-    this.suspectService.loadSuspects();   //  REQUIRED
-
+    this.suspectService.loadSuspects();   
     // this.suspectService.suspects$.subscribe(data => {
     //   if (data.length > 0) {
     //     this.suspectService.selectSuspect(data[0]); // auto select first
